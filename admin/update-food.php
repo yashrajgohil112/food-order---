@@ -13,7 +13,6 @@
       $price = $_POST['price'];
       $current_image = $rows['image_name'];
       $category = $_POST['category'];
-
       $featured = $_POST['featured'];
       $active = $_POST['active'];
 
@@ -23,7 +22,7 @@
          //get image detail
         $image_name = $_FILES['image']['name'];
 
-        if($image_name != "")
+        if($image_name !="")
         {
             //image available
             //AAA====upload the new image
@@ -54,7 +53,7 @@
 
 
             //BBB====remove the current img
-            if($current_image != "")
+            if($current_image!="")
             { 
                 $remove_path =  "../images/food/".$current_image;
                 $remove = unlink($remove_path);
@@ -67,17 +66,16 @@
                     die();//stop the process
                 }
             }
-
         }   
         else
         {
             $image_name = $current_image;
         } 
-      }
-      else
-      {
+    }
+    else
+    {
         $image_name = $current_image;
-      }
+    }
 
       //update into database
       $sql3 = "UPDATE tbl_food SET
@@ -102,7 +100,7 @@
         else
         {
             echo "not update";
-            //$_SESSION['upd-cat'] = "Category Data Not Update Successfuly";
+            //$_SESSION['upd-cat'] = "food Data Not Update Successfuly";
             //header('location: http://localhost/yashraj/18se02it012-food-order-project/admin/manage-category.php');
            
         }

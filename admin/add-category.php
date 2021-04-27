@@ -19,7 +19,7 @@
                     <tr>
                         <td>Image : </td>
                         <td>
-                            <input type="file" name="image_name" placeholder="Enter Category Title" required='required'>
+                            <input type="file" name="image_name" placeholder="Enter Category Title" >
                         </td>
                     </tr>
 

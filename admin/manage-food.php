@@ -15,9 +15,9 @@
                         <th>S.N.</th>
                         <th>Title</th>
                         <th>Price</th>
-                        <th>Image</th>
                         <th>Featured</th>
                         <th>Active</th>
+                        <th>Image</th>
                         <th>Actions</th>
                     </tr>
 

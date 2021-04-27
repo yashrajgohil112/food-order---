@@ -1,36 +1,13 @@
 <?php  include('partial-front/menu.php') ?>
 
-<?php 
-        //CHeck whether id is passed or not
-        if(isset($_GET['category_id']))
-        {
-            //Category id is set and get the id
-            $category_id = $_GET['category_id'];
-            // Get the CAtegory Title Based on Category ID
-            $sql = "SELECT title FROM tbl_category WHERE id=$category_id";
-
-            //Execute the Query
-            $res = mysqli_query($conn, $sql);
-
-            //Get the value from Database
-            $row = mysqli_fetch_assoc($res);
-            //Get the TItle
-            $category_title = $row['title'];
-        }
-        else
-        {
-            //CAtegory not passed
-            //Redirect to Home page
-            header('location:'.SITEURL);
-        }
-    ?>
-
-
     <!-- fOOD sEARCH Section Starts Here -->
     <section class="food-search text-center">
         <div class="container">
             
-            <h2>Foods on <a href="#" class="text-white">"<?php echo $category_title; ?>"</a></h2>
+            <form action="food-search.php" method="POST">
+                <input type="search" name="search" placeholder="Search for Food.." required>
+                <input type="submit" name="submit" value="Search" class="btn btn-primary">
+            </form>
 
         </div>
     </section>
@@ -43,37 +20,43 @@
         <div class="container">
             <h2 class="text-center">Food Menu</h2>
 
+
+
+
             <?php 
             
-            //Create SQL Query to Get foods based on Selected CAtegory
-            $sql2 = "SELECT * FROM tbl_food WHERE category_id=$category_id";
+            //Getting Foods from Database that are active and featured
+            //SQL Query
+            $sql2 = "SELECT * FROM tbl_food WHERE active='Yes'";
 
             //Execute the Query
             $res2 = mysqli_query($conn, $sql2);
 
-            //Count the Rows
+            //Count Rows
             $count2 = mysqli_num_rows($res2);
 
-            //CHeck whether food is available or not
+            //CHeck whether food available or not
             if($count2>0)
             {
-                //Food is Available
-                while($row2=mysqli_fetch_assoc($res2))
+                //Food Available
+                while($row=mysqli_fetch_assoc($res2))
                 {
-                    $id = $row2['id'];
-                    $title = $row2['title'];
-                    $price = $row2['price'];
-                    $description = $row2['description'];
-                    $image_name = $row2['image_name'];
+                    //Get all the values
+                    $id = $row['id'];
+                    $title = $row['title'];
+                    $price = $row['price'];
+                    $description = $row['description'];
+                    $image_name = $row['image_name'];
                     ?>
-                    
+
                     <div class="food-menu-box">
                         <div class="food-menu-img">
                             <?php 
+                                //Check whether image available or not
                                 if($image_name=="")
                                 {
                                     //Image not Available
-                                    echo "Image not Available.";
+                                    echo "<div class='error'>Image not available.</div>";
                                 }
                                 else
                                 {
@@ -103,11 +86,11 @@
             }
             else
             {
-                //Food not available
-                echo "Food not Available.";
+                //Food Not Available 
+                echo "Food not available.";
             }
-        
-        ?>
+            
+            ?>
 
             <div class="clearfix"></div>
 
@@ -118,5 +101,6 @@
     </section>
     <!-- fOOD Menu Section Ends Here -->
 
+    <?php  include('partial-front/menu.php') ?>
 
-    <?php  include('partial-front/footer.php') ?>
+    
