@@ -1,6 +1,8 @@
 <?php  include('partial-front/menu.php') ?>
 <?php  include('connection/constants.php') ?>
 
+
+
 <!-- fOOD sEARCH Section Starts Here -->
 <section class="food-search text-center">
         <div class="container">
@@ -14,6 +16,26 @@
     </section>
 
     <!-- fOOD sEARCH Section Ends Here -->
+
+    <?php
+        
+             if(isset($_SESSION['order-done']))
+             {
+              ?>
+                <div class="alert alert-success" role="alert">
+                     <strong>Hey!</strong> <?php  echo $_SESSION['order-done']; ?>.
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                </div>
+             <?php
+   
+               unset($_SESSION['order-done']);
+             }
+             
+
+   ?>
+
 
     <!-- CAtegories Section Starts Here -->
     <section class="categories">
@@ -135,7 +157,7 @@
                             </p>
                             <br>
 
-                            <a href="localhost/yashraj/18se02it012-food-order-project/order.php?food_id=<?php echo $id; ?>" class="btn btn-primary">Order Now</a>
+                            <a href="order.php?food_id=<?php echo $id; ?>" class="btn btn-primary">Order Now</a>
                         </div>
                     </div>
 

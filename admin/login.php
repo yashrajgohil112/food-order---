@@ -16,15 +16,8 @@
 
            if(isset($_SESSION['login']))
                   {
-                      ?>
-                      <div class="alert alert-danger" role="alert">
-                             <strong>Hey!</strong> <?php  echo $_SESSION['login']; ?>.
-                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                             <span aria-hidden="true">&times;</span>
-                             </button>
-                             </div>
-                      <?php
-                     
+                    
+                    echo $_SESSION['login'];
                      unset($_SESSION['login']);
                   }
 
@@ -69,9 +62,12 @@
          $username = $_POST['username'];
          $password = md5($_POST['password']);
 
+
         //2.sql to check whether user exist or not
         $sql = " SELECT * FROM tbl_admin WHERE username='$username' 
         AND password='$password' ";
+
+        
 
         //3.execute the query
         $res = mysqli_query($conn, $sql);
@@ -87,7 +83,7 @@
         }
         else
         { 
-          $_SESSION['login'] = "Username and Password Not Match.";
+          $_SESSION['login'] = "<label style='color: red;'>Username and Password Not Match.</label>";
           header('location: http://localhost/yashraj/18se02it012-food-order-project/admin/login.php');
         }    
     }

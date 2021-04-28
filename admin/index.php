@@ -1,33 +1,27 @@
 
 <?php include('partials/menu.php') ?>
+<?php
+if(!isset($_SESSION['login']))
+{
+    echo "you are logged out";
+    header('location:login.php');
+}
+
+?>
+
 
         <!-- main-content section starts -->
         <div class="main-content">
              <div class="wapper">
                  <h1>Dashboard</h1>
                  <br>
-          <?php
 
-              
-
-              $sql = "SELECT * FROM tbl_admin";
-              $res = mysqli_query($conn, $sql);
-              if($res==TRUE)
-               {
-                  $count = mysqli_num_rows($res);//get all the row
-
-                  if($count>0)
-                  {
-                     while($rows=mysqli_fetch_assoc($res))
-                     {
-                         $id=$rows['id'];
-                         $full_name=$rows['full_name'];
-                         $username=$rows['username'];
-                         if(isset($_SESSION['login']))
+                 <?php
+                        if(isset($_SESSION['login']))
                          {
                            ?>
                             <div class="alert alert-success " role="alert">
-                             <strong><?php echo $full_name;  ?>... </strong> <?php  echo $_SESSION['login']; ?>.
+                             <strong> Hey... </strong> <?php  echo $_SESSION['login']; ?>.
                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                              <span aria-hidden="true">&times;</span>
                              </button>
@@ -35,34 +29,82 @@
                            <?php
                      
                            unset($_SESSION['login']);
-                         }
-                     }
-                 }
-               }   
-   ?>
+                         }  
+                  ?>
 
          
-            <br>
+            <br><br>
 
-                 <div class="col-4 text-center">
-                      <h1>5</h1><br>
-                      Categories
-                 </div>
+                  <div class="col-4 text-center">
 
-                 <div class="col-4 text-center">
-                      <h1>5</h1><br>
-                      Categories
-                 </div>
+                    <?php 
+                        //Sql Query 
+                        $sql = "SELECT * FROM tbl_category";
+                        //Execute Query
+                        $res = mysqli_query($conn, $sql);
+                        //Count Rows
+                        $count = mysqli_num_rows($res);
+                    ?>
 
-                 <div class="col-4 text-center">
-                      <h1>5</h1><br>
-                      Categories
-                 </div>
+                    <h1><?php echo $count; ?></h1>
+                    <br />
+                    Categories
+                </div>
 
-                 <div class="col-4 text-center">
-                      <h1>5</h1><br>
-                      Categories
-                 </div>
+                <div class="col-4 text-center">
+
+                    <?php 
+                        //Sql Query 
+                        $sql2 = "SELECT * FROM tbl_food";
+                        //Execute Query
+                        $res2 = mysqli_query($conn, $sql2);
+                        //Count Rows
+                        $count2 = mysqli_num_rows($res2);
+                    ?>
+
+                    <h1><?php echo $count2; ?></h1>
+                    <br />
+                    Foods
+                </div>
+
+                <div class="col-4 text-center">
+                    
+                    <?php 
+                        //Sql Query 
+                        $sql3 = "SELECT * FROM tbl_order";
+                        //Execute Query
+                        $res3 = mysqli_query($conn, $sql3);
+                        //Count Rows
+                        $count3 = mysqli_num_rows($res3);
+                    ?>
+
+                    <h1><?php echo $count3; ?></h1>
+                    <br />
+                    Total Orders
+                </div>
+
+                <div class="col-4 text-center">
+                    
+                    <?php 
+                        //Creat SQL Query to Get Total Revenue Generated
+                        //Aggregate Function in SQL
+                        $sql4 = "SELECT SUM(total) AS Total FROM tbl_order WHERE status='Delivered'";
+
+                        //Execute the Query
+                        $res4 = mysqli_query($conn, $sql4);
+
+                        //Get the VAlue
+                        $row4 = mysqli_fetch_assoc($res4);
+                        
+                        //GEt the Total REvenue
+                        $total_revenue = $row4['Total'];
+
+                    ?>
+
+                    <h1>$<?php echo $total_revenue; ?></h1>
+                    <br />
+                    Revenue Generated
+                </div>
 
                  <div class="clearfix"></div>
              </div>  
