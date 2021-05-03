@@ -2,39 +2,19 @@
 <?php  include('connection/constants.php') ?>
 
 
-
 <!-- fOOD sEARCH Section Starts Here -->
 <section class="food-search text-center">
         <div class="container">
             
-            <form action="food-search.php" method="POST">
+            <form action="<?php echo SITEURL; ?>food-search.php" method="POST">
                 <input type="search" name="search" placeholder="Search for Food.." required>
                 <input type="submit" name="submit" value="Search" class="btn btn-primary">
             </form>
 
         </div>
     </section>
-
     <!-- fOOD sEARCH Section Ends Here -->
 
-    <?php
-        
-             if(isset($_SESSION['order-done']))
-             {
-              ?>
-                <div class="alert alert-success" role="alert">
-                     <strong>Hey!</strong> <?php  echo $_SESSION['order-done']; ?>.
-                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                     </button>
-                </div>
-             <?php
-   
-               unset($_SESSION['order-done']);
-             }
-             
-
-   ?>
 
 
     <!-- CAtegories Section Starts Here -->

@@ -101,6 +101,6 @@
     </section>
     <!-- fOOD Menu Section Ends Here -->
 
-    <?php  include('partial-front/menu.php') ?>
+    <?php  include('partial-front/footer.php') ?>
 
     

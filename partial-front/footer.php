@@ -20,6 +20,7 @@
     <section class="footer">
         <div class="container text-center">
             <p>All rights reserved. Designed By :- Yashraj Gohil</p>
+            <a href="http://localhost/yashraj/18se02it012-food-order-project/admin/login.php">Admin penal</a>
         </div>
     </section>
     <!-- footer Section Ends Here -->

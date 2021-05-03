@@ -1,13 +1,5 @@
 
 <?php include('partials/menu.php') ?>
-<?php
-if(!isset($_SESSION['login']))
-{
-    echo "you are logged out";
-    header('location:login.php');
-}
-
-?>
 
 
         <!-- main-content section starts -->
